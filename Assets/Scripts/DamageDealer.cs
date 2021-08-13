@@ -29,6 +29,8 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!(collision is CapsuleCollider2D)) { return; }
+
         if (collision.gameObject.GetComponent<Health>())
         {
             collision.gameObject.GetComponent<Health>().TakeDamage(damageToDeal);

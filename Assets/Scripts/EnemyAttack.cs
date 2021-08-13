@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
+    [SerializeField] bool idle = false;
+    [SerializeField] bool idleAttack = false;
+
     Rigidbody2D enemyRigidbody;
     Collider2D bodyCollider;
     BoxCollider2D feetCollider;
@@ -11,8 +14,9 @@ public class Enemy : MonoBehaviour
 
     PolygonCollider2D attackHitbox;
 
-    bool toggleAttackHitbox = false;
+    //bool toggleAttackHitbox = false;
 
+    bool isAttacking = false;
     bool isDead = false;
 
     // Start is called before the first frame update
@@ -24,8 +28,10 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         attackHitbox = GetComponentInChildren<PolygonCollider2D>();
         attackHitbox.enabled = false;
+        if (!idle && idleAttack) { Debug.LogError(gameObject.name + " cannot IdleAttack if Idle is disabled!"); }
+        if (idle && idleAttack) { StartCoroutine(WaitAndAttackLoop()); }
 
-        StartCoroutine(WaitAndAttackLoop());
+        //StartCoroutine(WaitAndAttackLoop());
     }
 
     // Update is called once per frame
@@ -40,15 +46,25 @@ public class Enemy : MonoBehaviour
     IEnumerator WaitAndAttackLoop()
     {
         yield return new WaitForSeconds(Random.Range(2f, 5f));
-        animator.SetTrigger("Attack");
+        Attack();
         StartCoroutine(WaitAndAttackLoop());
     }
 
-    void ToggleAttackHitbox()
+    public void Attack()
     {
-        toggleAttackHitbox = !toggleAttackHitbox;
-        attackHitbox.enabled = toggleAttackHitbox;
+        if (isAttacking) { return; }
+        animator.SetTrigger("Attack");
+    }
+
+    void SetAttackHitboxEnabled(int enabled)
+    {
+        attackHitbox.enabled = NumberToBool(enabled);
         //Debug.Log(GetComponentInChildren<BoxCollider2D>().enabled);
+    }
+    
+    void SetIsAttacking(int canAttack)
+    {
+        isAttacking = NumberToBool(canAttack);
     }
 
     void Die()
@@ -56,4 +72,13 @@ public class Enemy : MonoBehaviour
         isDead = true;
         Destroy(gameObject);
     }
+
+    bool NumberToBool(int number)
+    {
+        if (number == 1) { return true; }
+        else { return false; }
+    }
+
+    public bool GetIsIdle() { return idle; }
+    public bool GetIsIdleAttack() { return idleAttack; }
 }

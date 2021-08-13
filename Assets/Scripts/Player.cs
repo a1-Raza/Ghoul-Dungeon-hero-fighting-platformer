@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField] AudioClip footstepSound;
+    [SerializeField] AudioClip jumpSound;
 
     PolygonCollider2D attackHitbox;
 
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
     {
         if (isDead)
         {
+            playerRigidbody.velocity = new Vector2(0, playerRigidbody.velocity.y);
             return;
         }
 
@@ -77,6 +79,8 @@ public class Player : MonoBehaviour
         if (Input.GetAxisRaw("Jump") != 0 && feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, jumpSpeed);
+            if (!jumpSound) { return; }
+            PlaySound(jumpSound);
         }
     }
 

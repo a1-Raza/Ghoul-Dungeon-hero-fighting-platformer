@@ -103,3 +103,17 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: PlaySound
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: b8624b8b94c43884899ffd6512f27100, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.1
+    functionName: PlaySound
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 3b8e8c558a6c3444c8b56c47b61a17d2, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
