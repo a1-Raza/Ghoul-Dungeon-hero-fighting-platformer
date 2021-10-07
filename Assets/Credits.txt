@@ -1,0 +1,34 @@
+---------------------------------------------
+
+Unity Technologies: 
+- Tilemap (2D Extras)
+
+Brackeys:
+- Save system
+
+---------------------------------------------
+
+|| Asset Store ||
+
+Clembod:
+- Warrior (player)
+- Bringer of Death (enemies)
+
+Licino Souza:
+- Bizarre Graveyard (Creatures of the Night) tileset
+
+---------------------------------------------
+
+|| Audio ||
+
+All sound effects from Mixkit
+
+Music from Chosic:
+- Illusory Realm by Darren Curtis | https://www.darrencurtismusic.com/
+  Music promoted on https://www.chosic.com/free-music/all/
+  Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+  https://creativecommons.org/licenses/by/3.0/
+  (Level 3 and 4 music)
+- Exploration (Level 1 and 2 music)
+
+---------------------------------------------

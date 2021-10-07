@@ -17,9 +17,9 @@ TagManager:
   - Enemy
   - Background
   - Finish
-  - 
-  - 
-  - 
+  - Hazards
+  - Pickups
+  - Gate
   - 
   - 
   - 
@@ -45,8 +45,17 @@ TagManager:
   - name: Background
     uniqueID: 374167261
     locked: 0
+  - name: Hazards
+    uniqueID: 2191531641
+    locked: 0
   - name: Ground
     uniqueID: 2834607843
+    locked: 0
+  - name: Gate
+    uniqueID: 3952918519
+    locked: 0
+  - name: Pickups
+    uniqueID: 875976421
     locked: 0
   - name: Finish
     uniqueID: 3489667379

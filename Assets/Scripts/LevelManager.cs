@@ -6,7 +6,7 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-    int totalNumOfLevels = 10;
+    int totalNumOfLevels = 4;
 
     int numOfLevelsUnlocked = 1;
 
@@ -14,7 +14,9 @@ public class LevelManager : MonoBehaviour
     int levelNumToLoad;
     int currentLevelNum;
 
-    LevelSelectButton levelSelectButton;
+    [SerializeField] Canvas pauseScreen;
+
+    //LevelSelectButton levelSelectButton;
 
     private void Awake()
     {
@@ -24,6 +26,11 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        if (pauseScreen)
+        {
+            pauseScreen.enabled = false;
+        }
+
         if (GetComponent<LevelSelectButton>())
         { 
             levelNumToLoad = int.Parse(GetComponentInChildren<TMP_Text>().text); 
@@ -45,16 +52,14 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Level Select");
-        }
+        bool isPlayingLevel = SceneManager.GetActiveScene().name.Contains("Level ") && SceneManager.GetActiveScene().name != "Level Select";
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (isPlayingLevel && Input.GetAxisRaw("Pause") != 0)
         {
-            SaveSystem.ResetLevels(this);
-            SaveSystem.LoadLevels();
-            SceneManager.LoadScene("Level Select");
+            if (!pauseScreen.enabled)
+            {
+                PauseGame();
+            }
         }
     }
 
@@ -105,5 +110,38 @@ public class LevelManager : MonoBehaviour
     public void LoadLevelSelect()
     {
         SceneManager.LoadScene("Level Select");
+    }
+
+    public void LoadOptionsMenu()
+    {
+        SceneManager.LoadScene("Options");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ResetData()
+    {
+        SaveSystem.ResetLevels(this);
+        SaveSystem.LoadLevels();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        pauseScreen.enabled = true;
+    }
+
+    public void ResumeGame()
+    {
+        pauseScreen.enabled = false;
+        Time.timeScale = 1;
     }
 }

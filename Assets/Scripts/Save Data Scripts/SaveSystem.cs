@@ -15,6 +15,8 @@ public static class SaveSystem
 
         formatter.Serialize(stream, data);
         stream.Close();
+
+        //Debug.Log("Data Saved");
     }
 
     public static LevelData LoadLevels()
@@ -30,6 +32,7 @@ public static class SaveSystem
 
             //Debug.Log("Number of levels unlocked: " + data.totalNumLevelsUnlocked);
             //Debug.Log("Saved to " + path);
+            //Debug.Log("Data Loaded | Levels Unlocked: " + data.totalNumLevelsUnlocked);
             return data;
         }
         else
@@ -52,5 +55,7 @@ public static class SaveSystem
 
         formatter.Serialize(stream, data);
         stream.Close();
+
+        //Debug.Log("Data Reset");
     }
 }

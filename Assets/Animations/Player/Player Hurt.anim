@@ -78,7 +78,21 @@ AnimationClip:
   - time: 0
     functionName: PlaySound
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f4feaa3084b0cb14e9ffac50a190cf53, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: 1b3bbc745d1cf5740ab8fa82a57d3fce, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: ToggleBodyCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.06666667
+    functionName: ToggleBodyCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 8820180283543127825}
   - component: {fileID: 6582721141009834670}
   - component: {fileID: 1813514783020078504}
+  - component: {fileID: 8104990910666696787}
+  - component: {fileID: 5138169654234280353}
+  - component: {fileID: 3472373237162535326}
   m_Layer: 8
   m_Name: Enemy BoD
   m_TagString: Untagged
@@ -133,6 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f606df00613024f85b16005a9806a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idle: 0
+  idleAttack: 0
+  attackCooldownTime: 3
 --- !u!114 &6582721141009834670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa42b181df81314c926aa2be6d8461f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
+  health: 400
+  maxHealth: 1000
+  canBeAffectedByHazards: 0
+  destroyWhenNoMoreHealth: 0
 --- !u!114 &1813514783020078504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +170,133 @@ MonoBehaviour:
   distanceToSeePlayer: 10
   distanceToAttackPlayer: 2.75
   enemySpeed: 2.5
+  minIdleWaitTime: 1
+  maxIdleWaitTime: 5
+  attackCooldownTime: 3
+--- !u!82 &8104990910666696787
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820180283543127852}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &5138169654234280353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820180283543127852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf0a9f55de8c7442bd5410b0180b46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3472373237162535326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8820180283543127852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac245dc0397d0d4cb3b479da63da276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnWhenPlayerNear: 0
+  useEnemyMovementDistanceToSeePlayer: 0
+  xDistanceToSpawnFromPlayer: 5
+  yDistanceToSpawnFromPlayer: 2
 --- !u!1 &8820180284359691793
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,8 +367,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -3.6863236, y: 0.35077694}
-      - {x: -3.6399124, y: -0.60474074}
+    - - {x: -3.4129853, y: 0.37355497}
+      - {x: -3.412131, y: -0.5819627}
       - {x: -0.7820667, y: -0.92917943}
       - {x: -0.7912998, y: 0.585391}
 --- !u!1 &8820180284552676180
@@ -304,7 +440,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1783779435
-  m_SortingLayer: 3
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: -750047184722822154, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
